@@ -1,0 +1,41 @@
+<div class="sidebar-component">
+  <div #sidebarToggle id="wrapper" [ngClass]="getToggle()">
+    <div [ngClass]="getOverlay()"></div>
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-overlay" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav" style="margin-top: 24px">
+        <hr style="margin: 0px;">
+        <li><a class="sidebar-item">
+              <i class="material-icons">home</i>
+              <p class="sidebar-item-text"> Home </p>
+            </a>
+        </li>
+
+        <li><a class="sidebar-item">
+              <i class="material-icons">favorite</i>
+              <p class="sidebar-item-text"> Favorites </p>
+            </a>
+        </li>
+
+        <li><a class="sidebar-item">
+              <i class="material-icons">sms</i>
+              <p class="sidebar-item-text"> Send feedback </p>
+            </a>
+        </li>
+        
+      </ul>
+    </nav>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <!-- Render route -->
+      <router-outlet></router-outlet>
+      
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</div>

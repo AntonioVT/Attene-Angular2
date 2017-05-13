@@ -1,0 +1,35 @@
+<div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- Menu and brand name -->
+        <a class="navbar-brand" (click)="openSideBar()"><i class="material-icons">menu</i></a>
+        <a class="navbar-brand">
+          <div class="navbar-brand-logo"> Attene </div>
+        </a>
+        <!-- Search box -->
+        <div class="col-sm-6 col-md-6">
+          <form class="navbar-form" role="search">
+            <div class="input-group" style="width: 100%; max-width: 500px;">
+              <input type="text" class="form-control" placeholder="Search" name="q">
+              <div class="input-group-btn" style="width: 40px">
+                <button type="submit" class="btn btn-default navbar-option"><i class="material-icons material-icons-size">search</i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <ul class="nav navbar-nav navbar-right" style="padding: 0px 16px">
+          <li *ngIf="loggedIn;"><a class="navbar-brand" href="#"><i class="material-icons">file_upload</i></a></li>
+          <li *ngIf="loggedIn;" style="height: 64px; display: block;"><a href="/profile" class="navbar-user"><p>TVBlink</p></a></li>
+          <li *ngIf="loggedIn;"><a class="navbar-brand" href="#" style="padding-left: 0px"><i class="material-icons">exit_to_app</i></a></li>
+          <li *ngIf="!loggedIn;">
+            <div class="navbar-form navbar-login-option">
+              <button type="submit" class="btn btn-default navbar-option">SIGN IN</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
