@@ -11,7 +11,7 @@ import { Subscription } from "rxjs/Subscription";
 
 export class MainSideBarComponent implements OnDestroy {
   
-  isToggled: boolean = true;
+  isToggled: boolean = false;
   subscription: Subscription;
   
   constructor(private navigationService: NavigationService) {
@@ -46,7 +46,6 @@ export class MainSideBarComponent implements OnDestroy {
 
   toggleSidebar(){
     this.isToggled = !this.isToggled;
-    console.log('huh??');
   }
 
   ngOnDestroy() {

@@ -1,0 +1,29 @@
+<app-authform>
+  <div class="container">
+    <div id="fullscreen_bg" class="fullscreen_bg">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-md-12">
+      <div class="card card-container">
+        <h1 class="profile-name-card">Create a new account!</h1>
+        <form class="form-signin">
+          <input type="text" [(ngModel)]="rUsername" name="rUsername" class="form-control" placeholder="Username" required autofocus>
+          <span class="help-inline"></span>
+          <input type="email" [(ngModel)]="rEmail" name="rEmail" class="form-control" placeholder="Email" required autofocus>
+          <span class="help-inline"></span>
+          <input type="password" [(ngModel)]="rPassword" name="rPassword" class="form-control" placeholder="Password" required>
+          <span class="help-inline"></span>
+          <input type="password" [(ngModel)]="rConfirmPassword" name="rConfirmPassword" class="form-control" placeholder="Confirm password" required>
+          <span class="help-inline"></span>
+          <hr style="border-color: rgba(0, 0, 0 ,0); margin: 12px;">
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="register()">SIGN UP</button>
+          <p> By signing up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Privacy Policy</a> and <a href="#">Content Policy</a>. </p>
+        </form>
+        <!-- /form -->
+
+      </div>
+    </div>
+  </div>
+</app-authform>

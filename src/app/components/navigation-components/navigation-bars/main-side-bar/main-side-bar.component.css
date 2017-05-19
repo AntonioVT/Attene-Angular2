@@ -10,7 +10,7 @@
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  width: 240px;
+  width: 224px;
 }
 
 #sidebar-wrapper {
@@ -20,8 +20,8 @@
   -webkit-transition: all 0.5s ease;
   background: #ffffff;
   height: calc(100% - 64px);
-  left: 220px;
-  margin-left: -220px;
+  left: 224px;
+  margin-left: -224px;
   overflow-x: hidden;
   overflow-y: auto;
   transition: all 0.5s ease;
@@ -122,31 +122,34 @@
 }
 
 .overlay {
-  opacity: 0;
   position: fixed;
   display: block;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-  transition: opacity 0.4s ease-in-out;
-  -ms-transition: opacity 0.4s ease-in-out;
-  -moz-transition: opacity 0.4s ease-in-out;
-  -webkit-transition: opacity 0.4s ease-in-out;
+  z-index: 4000;
+  opacity: 0;
+  visibility: hidden;
+  -moz-transition: opacity 500ms linear, visibility 0s linear 500ms;
+  -o-transition: opacity 500ms linear, visibility 0s linear 500ms;
+  -webkit-transition: opacity 500ms linear, visibility 0s linear;
+  -webkit-transition-delay: 0s, 500ms;
+  transition: opacity 500ms linear, visibility 0s linear 500ms;
 }
 
 .overlay-darken {
-  opacity: 1;
   position: fixed;
   display: block;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-  transition: opacity 0.4s ease-in-out;
-  -ms-transition: opacity 0.4s ease-in-out;
-  -moz-transition: opacity 0.4s ease-in-out;
-  -webkit-transition: opacity 0.4s ease-in-out;
+  z-index: 4000;
+  opacity: 1;
+  visibility: visible;
+  -moz-transition: opacity 500ms linear, visibility 0s linear;
+  -o-transition: opacity 500ms linear, visibility 0s linear;
+  -webkit-transition: opacity 500ms linear, visibility 0s linear;
+  transition: opacity 500ms linear, visibility 0s linear;
 }
 
 /* FOR left side */
