@@ -6,6 +6,8 @@ import { RegisterComponent } from "app/components/site-components/register/regis
 import { ForgotpasswordComponent } from "app/components/site-components/forgotpassword/forgotpassword.component";
 import { NotFoundComponent } from "app/components/site-components/not-found/not-found.component";
 import { UploadComponent } from "app/components/site-components/upload/upload.component";
+import { UploadCommunityComponent } from "app/components/site-components/upload/upload-community/upload-community.component";
+import { UploadPublisherComponent } from "app/components/site-components/upload/upload-publisher/upload-publisher.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,6 +15,8 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'passwordrecovery', component: ForgotpasswordComponent },
     { path: 'upload', component: UploadComponent },
+    { path: 'upload/c', component: UploadCommunityComponent },
+    { path: 'upload/p', component: UploadPublisherComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

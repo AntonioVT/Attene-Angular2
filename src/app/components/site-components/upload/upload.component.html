@@ -2,133 +2,34 @@
   <h3 class="text-center"> Post your screenshot here! </h3>
 
   <!-- Choose game type menu -->
-  <div *ngIf="!gameType">
-    <div class="row upload-container">
-      <div class="col-md-12" style="padding: 0px">
-        <div class="panel panel-primary copyright-wrap" id="copyright-wrap" style="margin: 0px;">
-          <div class="col-md-12 top-box">
-            <h5 class="upload-title"> Please, select the type of game: </h5>
-          </div>
-          <div class="panel-body" style="padding: 0px;">
-            <div class="col-md-6 option-box-fix text-center" (click)="setGameType('community')">
+  <div class="row upload-container">
+    <div class="col-md-12" style="padding: 0px">
+      <div class="panel panel-primary copyright-wrap" id="copyright-wrap" style="margin: 0px;">
+        <!-- Top panel -->
+        <div class="col-md-12 top-box">
+          <h5 class="upload-title"> Please, select the type of game: </h5>
+        </div>
+
+        <!-- body: 2 options -->
+        <div class="panel-body" style="padding: 0px;">
+          <!-- option A -->
+          <a routerLink="/upload/c">
+            <div class="col-md-6 option-box-fix text-center">
               <div class="option-box item-description-fix" style="background-image: url('http://static.giga.de/wp-content/uploads/2015/03/hotline-miami-2-fans-ash_alex.jpg');">
                 <h5 class="item-description"> Community </h5>
               </div>
             </div>
-            <div class="col-md-6 option-box-fix text-center" (click)="setGameType('published')">
+          </a>
+           <!-- option B -->
+          <a routerLink="/upload/p">
+            <div class="col-md-6 option-box-fix text-center">
               <div class="option-box item-description-fix" style="background-image: url('http://cdn3-www.superherohype.com/assets/uploads/gallery/rise-of-the-tomb-raider/10563018_10153000381826158_2610457512035304064_n.jpg');">
                 <h5 class="item-description"> Published </h5>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Choose community game -->
-  <div *ngIf="gameType == 'community'">
-    <div class="row upload-container">
-      <div class="col-md-12" style="padding: 0px">
-        <div class="panel panel-primary copyright-wrap" id="copyright-wrap" style="margin: 0px;">
-          <div class="panel-heading" style="font-size: 20px; background-color: #212121; padding: 11px 12px;">Choose a game and upload your picture:
-            <button type="button" class="close" style="outline-style: none; padding: 0px;" (click)="setGameType(null)"> <i class="material-icons" style="font-size: 22px; line-height: 32px;">arrow_back</i></button>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <!-- left side -->
-              <div class="col-md-6">
-                <div class="wrapper">
-                  <div class="js--image-preview"></div>
-                  <div class="upload-options">
-                    <label><input type="file" class="image-upload" accept="image/*" (change)="onChangeImage($event)" /></label>
-                  </div>
-                </div>
-              </div>
-              <!-- right side -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Please, search for your game... </label>
-                  <div *ngIf="!gameSelected; else elseSelectedGame">
-                    <input class="form-control" id="focusedInput" type="text" placeholder="Game name...">
-                    <div class="userlist">
-                      <div class="useroption" (click)="selectGame(0, 'Rocket League')">
-                        <span> Rocket League </span>
-                      </div>
-                      <div class="useroption">
-                        <span> League of Legends </span>
-                      </div>
-                      <div class="useroption">
-                        <span> S4 League </span>
-                      </div>
-                      <div class="useroption">
-                        <span> Rocket League </span>
-                      </div>
-                      <div class="useroption">
-                        <span> Rocket League </span>
-                      </div>
-                    </div>
-                  </div>
-                  <ng-template #elseSelectedGame>
-                    <input class="form-control" id="focusedInput" type="text" value="{{uploadData.gameName}}" disabled>
-                  </ng-template>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Category: </label>
-                  <select class="form-control" id="sel1">
-                    <option selected="selected" value="-1"> Please, select a category... </option>
-                    <option value="0">Crafting</option>
-                    <option value="0">In-Game</option>
-                    <option value="0">Inventory</option>
-                    <option value="0">Level Selection</option>
-                    <option value="0">Main Menu</option>
-                 </select>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Title</label>
-                  <input class="form-control" id="focusedInput" type="text" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Description</label>
-                  <textarea class="form-control" rows="2" id="textArea"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Tags</label>
-                  <input class="form-control" id="focusedInput" type="text" placeholder="(e.g., player, death, landscape)">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Choose published game -->
-  <div *ngIf="gameType == 'published'">
-    <div class="row upload-container">
-      <div class="col-md-12 top-box">
-        <h5 class="upload-title"> Choose a game and upload your picture: </h5>
-        <button class="btn btn-primary" style="width: 10%; margin: 0px; display: inline-block;" type="submit" (click)="setGameType(null)">BACK</button>
-      </div>
-    </div>
-
-  </div>
-
-
-
-
-  <!-- Box to display image -->
-  <!-- 
-  <div class="wrapper">
-    <div class="box">
-      <div class="js--image-preview"></div>
-      <div class="upload-options">
-        <label>
-        <input type="file" class="image-upload" accept="image/*" (change)="onChangeImage($event)" />
-      </label>
-      </div>
-    </div>
-  </div>
-  -->
 </div>

@@ -7,6 +7,7 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import 'firebase/storage'; // only import firebase storage
 
 // Components
 import { AppComponent } from './app.component';
@@ -22,6 +23,12 @@ import { AuthformComponent } from './components/site-components/_shared/authform
 import { DatabaseService } from "app/services/external-services/firebase/database.service";
 import { NotFoundComponent } from './components/site-components/not-found/not-found.component';
 import { UploadComponent } from './components/site-components/upload/upload.component';
+import { IgdbService } from "app/services/external-services/igdb/igdb.service";
+import { UploadCommunityComponent } from './components/site-components/upload/upload-community/upload-community.component';
+import { UploadPublisherComponent } from './components/site-components/upload/upload-publisher/upload-publisher.component';
+import { UploadGameItemComponent } from './components/site-components/upload/upload-game-item/upload-game-item.component';
+import { StorageService } from "app/services/external-services/firebase/storage.service";
+import { AdbService } from "app/services/external-services/adb/adb.service";
 
 
 @NgModule({
@@ -35,7 +42,10 @@ import { UploadComponent } from './components/site-components/upload/upload.comp
     ForgotpasswordComponent,
     AuthformComponent,
     NotFoundComponent,
-    UploadComponent
+    UploadComponent,
+    UploadCommunityComponent,
+    UploadPublisherComponent,
+    UploadGameItemComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,7 @@ import { UploadComponent } from './components/site-components/upload/upload.comp
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, DatabaseService],
+  providers: [AuthService, DatabaseService, IgdbService, StorageService, AdbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

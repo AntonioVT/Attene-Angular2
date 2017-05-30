@@ -12,8 +12,8 @@
 
 .upload-options {
   position: relative;
-  height: 75px;
-  background-color: #2196f3;
+  height: 81px;
+  background-color: #212121 ;
   cursor: pointer;
   overflow: hidden;
   text-align: center;
@@ -22,7 +22,7 @@
 }
 
 .upload-options:hover {
-  background-color: #1e88e5;
+  background-color:#424242 ;
 }
 .upload-options input {
   width: 0.1px;
@@ -89,10 +89,10 @@
   content: "photo_size_select_actual";
   font-family: 'Material Icons';
   position: relative;
-  font-size: 18em;
+  font-size: 160px;
   color: #e6e6e6;
-  top: calc(50% - 200px);
-  left: calc(50% - 117px);
+  top: calc(50% - 130px);
+  left: calc(50% - 80px);
   margin: auto;
   z-index: 0;
 }
@@ -213,7 +213,7 @@ i.material-icons {
 	left: inherit;
 	position: absolute;
 	width: 95%;
-	max-height: 168px;
+	max-height: 224px;
 	background-color: #ffffff;
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
 	display: block;
@@ -221,26 +221,13 @@ i.material-icons {
   z-index: 2;
 }
 
-.useroption{
-	height: 56px;
-	vertical-align: middle;
-	line-height: 56px;
-	cursor: pointer;
-  -webkit-user-select: none; /* Chrome/Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
-
-  /* Rules below not implemented in browsers yet */
-  -o-user-select: none;
-  user-select: none;
-}
-.useroption:hover{
-	background: rgba(0,0,0,0.05);
-}
-.useroption span{
-	margin-left: 12px;
-}
-
 .form-control:disabled{
   background-color: rgba(0, 0, 0, 0.06);
+}
+
+.btn-back, .btn-back:focus{
+    outline:none;
+    box-shadow:none;
+    background-color: rgba(0,0,0,0);
+    color: red;
 }

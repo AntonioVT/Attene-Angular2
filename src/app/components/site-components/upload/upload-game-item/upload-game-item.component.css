@@ -1,0 +1,23 @@
+.useroption{
+	height: 64px;
+	vertical-align: middle;
+	line-height: 64px;
+	cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+.useroption:hover{
+	background: rgba(0,0,0,0.05);
+}
+.useroption span{
+	margin-left: 12px;
+}
+
+span{
+  max-width: 70%;
+}

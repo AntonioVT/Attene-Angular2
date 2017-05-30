@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from "app/services/external-services/firebase/auth.service";
+import { AdbService } from "app/services/external-services/adb/adb.service";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { AuthService } from "app/services/external-services/firebase/auth.servic
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public adbService: AdbService) { }
 
   isLoggedIn: boolean;
 
@@ -32,6 +33,15 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  getSs(){
+    this.adbService.getScreenshot().then(function(data){
+      var val = data.text();
+      console.log(JSON.parse(val));
+    }).catch(function(error){
+      console.log(error);
+    });
   }
 
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { IgdbService } from "app/services/external-services/igdb/igdb.service";
 
 @Component({
   selector: 'app-upload',
@@ -7,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  // menu variables
-  gameType: string = 'community';
   // file variables
   originalFile: any;
 
@@ -23,17 +22,16 @@ export class UploadComponent implements OnInit {
     ssTags: null
   }
 
-  constructor() { }
+  uGameName: string;
+
+  constructor(private igdb: IgdbService) { }
 
   ngOnInit() {
 
   }
 
-  // upload menu methods
-  setGameType(gameType: string) {
-    if (gameType == 'published' || gameType == 'community' || gameType == null) {
-      this.gameType = gameType;
-    }
+  testApi() {
+    this.igdb.searchGame(this.uGameName);
   }
 
   // community
@@ -44,34 +42,5 @@ export class UploadComponent implements OnInit {
     this.uploadData.gameId = gameId;
     this.uploadData.gameName = gameName;
   }
-
-  // file methods
-  onChangeImage(e) {
-    let file = e.currentTarget.files[0];
-    this.checkType(file);
-  }
-
-  checkType(file) {
-    let imageType = /image.*/;
-    if (!file.type.match(imageType)) {
-      throw 'Datei ist kein Bild';
-    } else if (!file) {
-      throw 'Kein Bild gewählt';
-    } else {
-      this.previewImage(file);
-    }
-  }
-
-  previewImage(file) {
-    let thumb = <HTMLElement><any>document.querySelector('.js--image-preview'),
-      reader = new FileReader();
-
-    reader.onload = function () {
-      thumb.style.backgroundImage = 'url(' + reader.result + ')';
-    }
-    reader.readAsDataURL(file);
-    thumb.className += ' js--no-default';
-  }
-
 
 }
