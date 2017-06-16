@@ -29,6 +29,8 @@ import { UploadPublisherComponent } from './components/site-components/upload/up
 import { UploadGameItemComponent } from './components/site-components/upload/upload-game-item/upload-game-item.component';
 import { StorageService } from "app/services/external-services/firebase/storage.service";
 import { AdbService } from "app/services/external-services/adb/adb.service";
+import { ActivateComponent } from './components/site-components/activate/activate.component';
+import { InterfaceThumbnailComponent } from './components/site-components/_shared/interface/interface-thumbnail/interface-thumbnail.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { AdbService } from "app/services/external-services/adb/adb.service";
     UploadComponent,
     UploadCommunityComponent,
     UploadPublisherComponent,
-    UploadGameItemComponent
+    UploadGameItemComponent,
+    ActivateComponent,
+    InterfaceThumbnailComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from "app/services/external-services/firebase/auth.service";
 import { AdbService } from "app/services/external-services/adb/adb.service";
+import { InterfaceThumbnail } from "app/classes/interface-thumbnail";
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,14 @@ export class HomeComponent implements OnInit {
   constructor(public authService: AuthService, public adbService: AdbService) { }
 
   isLoggedIn: boolean;
+  public test: InterfaceThumbnail = new InterfaceThumbnail();
+
 
   ngOnInit() {
+    this.test.urlImage = "https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg";
+    this.test.itfTitle = "Zelda";
+    this.test.itfCategory = "Crafting";
+    this.test.urlInterface = "/interface/0";
   }
 
   login() {

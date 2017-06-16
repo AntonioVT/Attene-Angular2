@@ -4,7 +4,10 @@ import { UploadGameItem } from "app/classes/upload-game-item";
 @Component({
   selector: 'app-upload-game-item',
   templateUrl: './upload-game-item.component.html',
-  styleUrls: ['./upload-game-item.component.css']
+  styleUrls: ['./upload-game-item.component.css'],
+  host: {
+    '(error)':'getImageSourceJPG()'
+   }
 })
 export class UploadGameItemComponent implements OnInit {
 

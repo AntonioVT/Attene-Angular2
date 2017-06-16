@@ -121,7 +121,6 @@ export class UploadPublisherComponent implements OnInit {
     reader.onload = function () {
       vm.fileResult = reader.result;
       thumb.style.backgroundImage = 'url(' + reader.result + ')';
-
     }
     reader.readAsDataURL(file);
     thumb.className += ' js--no-default';
