@@ -9,11 +9,11 @@ export class StorageService {
 
   uploadScreenshot(file, name){
     // thumbnail, medium ,original
-    return this.app.storage().ref().child('screenshot/thumbnail/1' + name).put(file);
+    return this.app.storage().ref().child('screenshot/thumbnail/' + name).put(file);
   }
 
-  getScreenshotUrl(){
-    return this.app.storage().ref().child('screenshot/thumbnail/1').getDownloadURL();
+  getScreenshotUrl(name){
+    return this.app.storage().ref().child('screenshot/thumbnail/' + name).getDownloadURL();
   }
 
 }

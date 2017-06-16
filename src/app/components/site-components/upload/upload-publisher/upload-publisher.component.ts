@@ -18,7 +18,11 @@ export class UploadPublisherComponent implements OnInit {
   uploadGameItems: Array<UploadGameItem> = [];
   showGameItems: boolean = false;
   file: File;
+
+  // byte data
   fileResult: any;
+  fileResult1024: any;
+  fileResult336: any;
 
   constructor(public igdb: IgdbService, public strg: StorageService) { }
   timer: any;
@@ -120,13 +124,83 @@ export class UploadPublisherComponent implements OnInit {
 
     reader.onload = function () {
       vm.fileResult = reader.result;
+      vm.fileResult1024 = null;
+      vm.fileResult336 = null;
       thumb.style.backgroundImage = 'url(' + reader.result + ')';
     }
     reader.readAsDataURL(file);
     thumb.className += ' js--no-default';
   }
 
+  convertImage(size, img) {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    canvas.width = size;
+    canvas.height = size / img.width * img.height;
+    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    var result = canvas.toDataURL();
+    return result;
+  }
+
+  imagesReady() {
+    let vm = this;
+    if (vm.fileResult && vm.fileResult1024 && vm.fileResult336) {
+      console.log('images ready');
+
+      var fileA = vm.dataURLtoFile(vm.fileResult, 'hello.png');
+      var fileB = vm.dataURLtoFile(vm.fileResult1024, 'hello2.png');
+      var fileC = vm.dataURLtoFile(vm.fileResult336, 'hello3.png');
+
+      vm.strg.uploadScreenshot(fileA, 'hello.png').then(function () {
+        vm.strg.getScreenshotUrl('hello.png').then(function (data) {
+          console.log(data);
+        });
+      });
+
+      vm.strg.uploadScreenshot(fileB, 'hello2.png').then(function () {
+        vm.strg.getScreenshotUrl('hello2.png').then(function (data) {
+          console.log(data);
+        });
+      });
+
+      vm.strg.uploadScreenshot(fileC, 'hello3.png').then(function () {
+        vm.strg.getScreenshotUrl('hello3.png').then(function (data) {
+          console.log(data);
+        });
+      });
+
+    }
+    else {
+      console.log('wait');
+    }
+  }
+
   uploadScreenshot() {
+    let vm = this;
+    if (vm.fileResult) {
+      console.log('Original image loaded');
+
+      var img1024 = new Image();
+      img1024.src = vm.fileResult;
+      img1024.onload = function () {
+        var res = vm.convertImage(1024, img1024);
+        vm.fileResult1024 = res;
+        vm.imagesReady();
+      }
+
+      var img336 = new Image();
+      img336.src = vm.fileResult;
+      img336.onload = function () {
+        var res = vm.convertImage(336, img336);
+        vm.fileResult336 = res;
+        vm.imagesReady();
+      }
+
+    } else {
+      console.log('Missing image');
+    }
+
+    /*
     let vm = this;
     var fileX = vm.dataURLtoFile(vm.fileResult, 'hello.png');
 
@@ -140,7 +214,7 @@ export class UploadPublisherComponent implements OnInit {
       vm.strg.getScreenshotUrl().then(function (data) {
         console.log(data);
       });
-    })
+    })*/
   }
 
   dataURLtoFile(dataurl, filename) {
