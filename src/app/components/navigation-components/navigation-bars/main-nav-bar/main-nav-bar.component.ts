@@ -20,7 +20,7 @@ export class MainNavBarComponent {
 
     this.user = authService.afa.authState;
     this.user.subscribe(authData => {
-      console.log(authData);
+      //console.log(authData);
       vm.toggleUserMenu(authData);
     });
   }

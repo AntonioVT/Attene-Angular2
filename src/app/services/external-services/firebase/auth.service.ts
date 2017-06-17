@@ -25,23 +25,7 @@ export class AuthService {
 
   registerUser(email: string, password: string, username: string) {
     var vm = this;
-    this.databaseService.retrieveData('users/' + username.toLocaleLowerCase()).then(function (snapshot) {
-      if (snapshot.val() == null) {
-        // successful 
-        vm.afa.auth.createUserWithEmailAndPassword(email, password)
-          .then((data) => {
-            console.log(data);
-          })
-          // failure, mail already used or password error
-          .catch(function (error) {
-            console.log(error["code"])
-          });
-      }
-      else {
-        console.log('Username already taken.')
-      }
-    });
-
+    return vm.afa.auth.createUserWithEmailAndPassword(email, password);
   }
 
 }
