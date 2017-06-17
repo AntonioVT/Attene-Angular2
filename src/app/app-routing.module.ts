@@ -8,6 +8,7 @@ import { NotFoundComponent } from "app/components/site-components/not-found/not-
 import { UploadComponent } from "app/components/site-components/upload/upload.component";
 import { UploadCommunityComponent } from "app/components/site-components/upload/upload-community/upload-community.component";
 import { UploadPublisherComponent } from "app/components/site-components/upload/upload-publisher/upload-publisher.component";
+import { MainInterfaceComponent } from "app/components/site-components/main-interface/main-interface.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'upload', component: UploadComponent },
     { path: 'upload/c', component: UploadCommunityComponent },
     { path: 'upload/p', component: UploadPublisherComponent },
+    { path: 'interface/:id', component: MainInterfaceComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

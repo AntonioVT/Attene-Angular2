@@ -30,19 +30,19 @@ h2{
 
 @media (min-width: 992px) {
     .home-section{
-    padding: 0px 6%;
+    padding: 12px 6%;
     }
 }
 
 @media (min-width: 1200px) {
     .home-section{
-    padding: 0px 8%;
+    padding: 12px 8%;
     }
 }
 
 @media (min-width: 1400px) {
     .home-section{
-    padding: 0px 12%;
+    padding: 12px 12%;
     }
 }
 
