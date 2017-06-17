@@ -11,7 +11,9 @@ import { InterfaceThumbnail } from "app/classes/interface-thumbnail";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authService: AuthService, public adbService: AdbService) { }
+  constructor(public authService: AuthService, public adbService: AdbService) { 
+    console.log('hey!!!');
+  }
 
   isLoggedIn: boolean;
   public test: InterfaceThumbnail = new InterfaceThumbnail();

@@ -11,67 +11,69 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <!-- left side -->
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="wrapper">
-                  <div class="js--image-preview"></div>
-                  <div class="upload-options">
-                    <label><input type="file" class="image-upload" accept="image/*" (change)="onChangeImage($event)" /></label>
-                  </div>
+            <!-- Image container -->
+            <div class="col-md-6" style="margin-top: 12px;">
+              <div class="wrapper">
+                <div class="js--image-preview"></div>
+                <div class="upload-options">
+                  <label><input type="file" class="image-upload" accept="image/*" (change)="onChangeImage($event)" /></label>
                 </div>
               </div>
             </div>
-            <!-- right side -->
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Please, search for your game... </label>
-                  <div *ngIf="!screenshotData.gameName; else elseSelectedGame">
-                    <input [(ngModel)]="uGameName" name="uGameName" class="form-control" id="focusedInput" type="text" placeholder="Game name..."
-                      (keyup)="callTimer()" (blur)="clearGameName()" (focus)="focusGameName()">
-                    <div *ngIf="showGameItems;" class="userlist" #uploadGameItemsList>
-                      <app-upload-game-item *ngFor="let ugi of uploadGameItems;" [ugi]="ugi" (click)="selectPublishedGame(ugi.id, ugi.name)"> </app-upload-game-item>
-                    </div>
+            <!-- Information container -->
+            <div class="col-md-6" style="margin-top: 12px;">
+              <!-- Game Title -->
+              <div class="form-group">
+                <label class="control-label">Game Title</label>
+                <div *ngIf="!screenshotData.gameName; else elseSelectedGame">
+                  <input [(ngModel)]="uGameName" name="uGameName" class="form-control" id="focusedInput" type="text" placeholder="Search" (keyup)="callTimer()"
+                    (blur)="clearGameName()" (focus)="focusGameName()">
+                  <div *ngIf="showGameItems;" class="userlist" #uploadGameItemsList>
+                    <app-upload-game-item *ngFor="let ugi of uploadGameItems;" [ugi]="ugi" (click)="selectPublishedGame(ugi.id, ugi.name)"> </app-upload-game-item>
                   </div>
-                  <ng-template #elseSelectedGame>
-                    <div class="input-group">
-                      <input class="form-control" id="focusedInput" type="text" value="{{screenshotData.gameName}}" disabled>
-                      <span class="input-group-btn">
+                </div>
+                <ng-template #elseSelectedGame>
+                  <div class="input-group">
+                    <input class="form-control" id="focusedInput" type="text" value="{{screenshotData.gameName}}" disabled>
+                    <span class="input-group-btn">
                       <button class="btn btn-back" type="button" (click)="deselectGame()">
                         <i class="material-icons" style="font-size: 8x; line-height: 22px; color:#212121;">cancel</i>
                       </button>
                     </span>
-                    </div>
-                  </ng-template>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Category: </label>
-                  <select class="form-control" id="sel1">
-                    <option selected="selected" value="-1"> Please, select a category... </option>
+                  </div>
+                </ng-template>
+              </div>
+              <!-- Category -->
+              <div class="form-group">
+                <label class="control-label">Category: </label>
+                <select class="form-control">
+                    <option value="-1" selected="true" disabled="disabled" style="all: unset; display: none;"> Select category</option>
                     <option value="0">Crafting</option>
                     <option value="0">In-Game</option>
                     <option value="0">Inventory</option>
                     <option value="0">Level Selection</option>
                     <option value="0">Main Menu</option>
                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Title</label>
-                  <input class="form-control" id="focusedInput" type="text" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Description</label>
-                  <textarea class="form-control" rows="2" id="textArea"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Tags</label>
-                  <input class="form-control" id="focusedInput" type="text" placeholder="(e.g., player, death, landscape)">
+              </div>
+              <!-- Description -->
+              <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea class="form-control" rows="2" id="textArea" style="resize: none;" placeholder="Brief description of the interface"></textarea>
+              </div>
+              <!-- Tags -->
+              <div class="form-group">
+                <label class="control-label">Tags</label>
+                <div [ngClass]="getTagActive()">
+                  <div *ngFor="let tag of tags; let i = index" style="all: unset; display: inline-block;">
+                    <div [ngClass]="(i==selectedTagIndex)?'chiptag-selected':'chiptag'"> {{tag}} <span class="chipCloseBtn" (click)="removeTag(i)"> &times; </span> </div>
+                  </div>
+                  <input class="form-control tag-input" [(ngModel)]="lTagToAdd" name="lTagToAdd" id="focusedInput" type="text" (blur)="setTagActive(false)"
+                    (focus)="setTagActive(true)" (keyup)="tagToProcess($event.keyCode)" maxlength="20" [placeholder]="getTagPlaceholder()">
                 </div>
               </div>
             </div>
             <!-- submit -->
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 16px;">
               <div class="form-group">
                 <a (click)="uploadScreenshot()" class="btn btn-primary btn-lg btn-block">SUBMIT</a>
               </div>

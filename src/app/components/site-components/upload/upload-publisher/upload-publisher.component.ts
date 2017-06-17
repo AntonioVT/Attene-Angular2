@@ -19,6 +19,10 @@ export class UploadPublisherComponent implements OnInit {
   showGameItems: boolean = false;
   file: File;
 
+  lTagToAdd: String;
+
+  tags: Array<String> = [];
+
   // byte data
   fileResult: any;
   fileResult1024: any;
@@ -28,7 +32,59 @@ export class UploadPublisherComponent implements OnInit {
   timer: any;
   uGameName: string = '';
 
+  tagActive: boolean = false;
+  selectedTagIndex: number = -1;
+
   ngOnInit() {
+  }
+
+  getTagPlaceholder() {
+    if (this.tags.length == 0)
+      return '(e.g., player, death, landscape)';
+    return '';
+  }
+
+  getTagActive() {
+    if (this.tagActive) {
+      return "chip-group-active";
+    }
+    return "chip-group";
+  }
+
+  setTagActive(tagActive: boolean) {
+    this.tagActive = tagActive;
+    if (!tagActive) {
+      this.selectedTagIndex = -1;
+    }
+  }
+
+  tagToProcess(key) {
+    let vm = this;
+    if (key == 188 || key == 13) {
+
+      var actualTag = vm.lTagToAdd;
+      actualTag = actualTag.replace(/,/g, "").trim();
+
+      if (actualTag && vm.tags.indexOf(actualTag) == -1) {
+        vm.tags.push(actualTag);
+        vm.lTagToAdd = '';
+      }
+    }
+    else if (key == 8 && !vm.lTagToAdd) {
+      if (!vm.lTagToAdd && vm.selectedTagIndex != -1) {
+        vm.tags.pop();
+        vm.selectedTagIndex = vm.tags.length - 1;
+      }
+      else {
+        vm.selectedTagIndex = vm.tags.length - 1;
+      }
+    } else {
+      vm.selectedTagIndex = -1;
+    }
+  }
+
+  removeTag(index) {
+    this.tags.splice(index, 1);
   }
 
   callTimer() {
