@@ -1,7 +1,22 @@
-<div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter">
+<div *ngIf="it.bVerticalMode; else horizontalBlock" class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter">
   <a [routerLink]="it.urlInterface">
-  <img [src]="it.urlImage" class="image-item center-block">
+    <img [src]="it.urlImage" class="image-item-vertical center-block">
   </a>
   <h3 class="text-center"> {{it.itfTitle}} </h3>
   <h4 class="text-center"> {{it.itfCategory}} </h4>
 </div>
+<ng-template #horizontalBlock>
+  <a [routerLink]="it.urlInterface">
+    <div class="gallery_product col-lg-12 col-md-12 col-sm-4 col-xs-12 gallery_product_hover">
+      <div class="row">
+        <div class="col-lg-6">
+          <img [src]="it.urlImage" class="image-item-horizontal center-block">
+        </div>
+        <div class="col-lg-6" style="padding-left: 0px">
+          <h3 class="text-center-horizontal"> {{it.itfTitle}} </h3>
+          <h4 class="text-center-horizontal"> {{it.itfCategory}} </h4>
+        </div>
+      </div>
+    </div>
+  </a>
+</ng-template>

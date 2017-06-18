@@ -16,14 +16,13 @@ export class HomeComponent implements OnInit {
   }
 
   isLoggedIn: boolean;
-  public test: InterfaceThumbnail = new InterfaceThumbnail();
+  public test: InterfaceThumbnail = new InterfaceThumbnail('https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg',
+                                                            '/interface/0',
+                                                            'Zelda',
+                                                            'Interface', true);
 
 
   ngOnInit() {
-    this.test.urlImage = "https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg";
-    this.test.itfTitle = "Zelda";
-    this.test.itfCategory = "Crafting";
-    this.test.urlInterface = "/interface/0";
   }
 
   login() {
