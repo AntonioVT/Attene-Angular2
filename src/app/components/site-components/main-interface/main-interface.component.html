@@ -14,7 +14,6 @@
               eget pellentesque felis. Praesent egestas luctus libero, in dignissim ipsum congue quis. Duis dui ante, laoreet
               ac libero sed.
             </p>
-
             Tags:
             <div *ngFor="let tag of tags; let i = index" style="all: unset; display: inline-block;">
               <div class="chiptag"> <a [routerLink]="tag" style="display: block;"> #{{tag}}  </a> </div>
@@ -23,11 +22,37 @@
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="stats">
+            <!--
             <h5> Statistics </h5>
             <div class="stats-group">
               <h6> <i class="material-icons interface-stats">remove_red_eye</i> 455 views </h6>
               <h6> <i class="material-icons interface-stats">thumb_up</i> 50 upvotes </h6>
-              <h6> <i class="material-icons interface-stats">favorite</i> Favorite </h6>
+            </div>
+            -->
+            <h5> Statistics </h5>
+            <div class="stats-group">
+              <h6 style="display: inline-block;"> <i class="material-icons interface-stats">remove_red_eye</i> 802,850 views </h6>
+              <h6  style="display: inline-block;"> <i class="material-icons interface-stats">thumb_up</i> 503k upvotes </h6>
+            </div>
+            <h5> Actions </h5>
+            <div class="stats-group">
+              <div class="row">
+                <div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-1">
+                  <div class="btn-group btn-block">
+                    <a class="btn btn-primary btn-block" href="https://firebasestorage.googleapis.com/v0/b/attene-cf230.appspot.com/o/screenshot%2Fthumbnail%2Fhello.png?alt=media&token=c74b04db-a08c-40db-b9d0-3e19f714deee" target="_blank"> <i class="material-icons interface-button-icon">file_download</i> Download </a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-1">
+                  <a class="btn btn-success btn-block"> <i class="material-icons interface-button-icon">favorite</i> Favorite</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-1">
+                  <a class="btn btn-default btn-block"> <i class="material-icons interface-button-icon">report</i> Report</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -40,8 +65,8 @@
         <div class="interface-container">
 
           <div class="row">
-            <div class="col-md-12" style="padding: 0px 15px 15px 15px">
-              <h5 style="margin-bottom: 0px"> <strong> Suggestions </strong> </h5>
+            <div class="col-md-12" style="padding: 0px 15px 0px 15px">
+              <h5 style="margin-top: 0px"> <strong> Suggestions </strong> </h5>
             </div>
             <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
             <app-interface-thumbnail [it]="test"></app-interface-thumbnail>

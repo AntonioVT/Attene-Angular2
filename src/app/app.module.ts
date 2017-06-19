@@ -32,6 +32,7 @@ import { AdbService } from "app/services/external-services/adb/adb.service";
 import { ActivateComponent } from './components/site-components/activate/activate.component';
 import { InterfaceThumbnailComponent } from './components/site-components/_shared/interface/interface-thumbnail/interface-thumbnail.component';
 import { MainInterfaceComponent } from './components/site-components/main-interface/main-interface.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MainInterfaceComponent } from './components/site-components/main-interf
     UploadGameItemComponent,
     ActivateComponent,
     InterfaceThumbnailComponent,
-    MainInterfaceComponent
+    MainInterfaceComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

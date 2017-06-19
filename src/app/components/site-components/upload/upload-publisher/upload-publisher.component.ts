@@ -3,7 +3,7 @@ import { Screenshot } from "app/classes/screenshot";
 import { IgdbService } from "app/services/external-services/igdb/igdb.service";
 import { UploadGameItem } from "app/classes/upload-game-item";
 import { StorageService } from "app/services/external-services/firebase/storage.service";
-import { escape } from "querystring";
+import { escape, unescape } from "querystring";
 
 @Component({
   selector: 'app-upload-publisher',
@@ -207,6 +207,8 @@ export class UploadPublisherComponent implements OnInit {
       var fileB = vm.dataURLtoFile(vm.fileResult1024, 'hello2.png');
       var fileC = vm.dataURLtoFile(vm.fileResult336, 'hello3.png');
 
+
+
       vm.strg.uploadScreenshot(fileA, 'hello.png').then(function () {
         vm.strg.getScreenshotUrl('hello.png').then(function (data) {
           console.log(data);
@@ -273,13 +275,34 @@ export class UploadPublisherComponent implements OnInit {
     })*/
   }
 
-  dataURLtoFile(dataurl, filename) {
+  dataURLtoFile(dataURI, filename) {
+    console.log('arr and mime');
+    /*
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, { type: mime });
+    return new File([u8arr], filename, { type: mime });*/
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    var b: any = new Blob([ia], { type: mimeString });
+    b.lastModifiedDate = new Date();
+    b.name = filename;
+    return b;
   }
 
 }

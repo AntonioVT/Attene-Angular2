@@ -11,7 +11,7 @@ export class MainInterfaceComponent implements OnInit {
   constructor() { }
   public test: InterfaceThumbnail = new InterfaceThumbnail('https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg',
                                                             '/interface/1',
-                                                            'Everyday is Wonderful! Hello Kitty Life Kit',
+                                                            'The Legend of Zelda: Breath of the Wild',
                                                             'Level Selection', false);
   public tags: string[] = ['Death','Fun','Metal','ASD','XD','JKDLSAJKLDSA KSJDAKLDSA'];
   ngOnInit() {
