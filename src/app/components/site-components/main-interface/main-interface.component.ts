@@ -13,6 +13,7 @@ export class MainInterfaceComponent implements OnInit {
                                                             '/interface/1',
                                                             'Everyday is Wonderful! Hello Kitty Life Kit',
                                                             'Level Selection', false);
+  public tags: string[] = ['Death','Fun','Metal','ASD','XD','JKDLSAJKLDSA KSJDAKLDSA'];
   ngOnInit() {
   }
 
