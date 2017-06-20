@@ -9,6 +9,7 @@ import { UploadComponent } from "app/components/site-components/upload/upload.co
 import { UploadCommunityComponent } from "app/components/site-components/upload/upload-community/upload-community.component";
 import { UploadPublisherComponent } from "app/components/site-components/upload/upload-publisher/upload-publisher.component";
 import { MainInterfaceComponent } from "app/components/site-components/main-interface/main-interface.component";
+import { MainGameComponent } from "app/components/site-components/main-game/main-game.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     { path: 'upload/c', component: UploadCommunityComponent },
     { path: 'upload/p', component: UploadPublisherComponent },
     { path: 'interface/:id', component: MainInterfaceComponent },
+    { path: 'game/:id', component: MainGameComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

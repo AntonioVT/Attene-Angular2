@@ -68,3 +68,12 @@
     margin-top: 6px;
     margin-bottom: 6px;
 }
+
+.interface-link {
+    color: #2196f3;
+    text-decoration: none;
+}
+.interface-link:hover {
+    color: #42a5f5;
+    text-decoration: underline;
+}

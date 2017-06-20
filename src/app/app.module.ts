@@ -33,6 +33,7 @@ import { ActivateComponent } from './components/site-components/activate/activat
 import { InterfaceThumbnailComponent } from './components/site-components/_shared/interface/interface-thumbnail/interface-thumbnail.component';
 import { MainInterfaceComponent } from './components/site-components/main-interface/main-interface.component';
 import { DropdownDirective } from './directives/dropdown.directive';
+import { MainGameComponent } from './components/site-components/main-game/main-game.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { DropdownDirective } from './directives/dropdown.directive';
     ActivateComponent,
     InterfaceThumbnailComponent,
     MainInterfaceComponent,
-    DropdownDirective
+    DropdownDirective,
+    MainGameComponent
   ],
   imports: [
     BrowserModule,
