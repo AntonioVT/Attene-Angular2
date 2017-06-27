@@ -1,5 +1,48 @@
 <div class="container-fluid top-panel">
-  <!--
+  <div class="text-center home-title">
+    <h1> Athene UI </h1>
+    <h2> A collection of video game interfaces </h2>
+  </div>
+</div>
+
+<app-interface-thumbnail-section>
+  <div class="col-lg-10 col-lg-offset-1 card-container">
+    <h5> Athene featured </h5>
+    <div class="row gallery_section">
+      <div *ngFor="let item of sectionFeatured; let i = index">
+        <app-interface-thumbnail [it]="item"></app-interface-thumbnail>
+        <div *ngIf="i % 2" class="clearfix visible-md-block visible-sm-block"></div>
+      </div>
+    </div>
+  </div>
+</app-interface-thumbnail-section>
+<app-interface-thumbnail-section>
+  <div class="col-lg-10 col-lg-offset-1 card-container" style="margin-top: 16px">
+    <h5> Weekly top </h5>
+    <div class="row gallery_section">
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <div class="clearfix visible-md-block visible-sm-block"></div>
+
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <div class="clearfix visible-md-block visible-sm-block"></div>
+
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <div class="clearfix visible-md-block visible-sm-block"></div>
+
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
+      <div class="clearfix visible-md-block visible-sm-block"></div>
+    </div>
+  </div>
+</app-interface-thumbnail-section>
+
+
+
+
+<!--
   <div class="row">
     <div class="col-lg-12">
       <h1> Home </h1>
@@ -10,82 +53,3 @@
     </div>
   </div>
   -->
-  <div class="text-center home-title">
-    <h1> Athene UI </h1>
-    <h2> A collection of video game interfaces </h2>
-  </div>
-
-</div>
-
-<div class="container-fluid mid-panel">
-  <div class="home-section">
-    <h5> Athene featured </h5>
-    <div class="row gallery_section">
-      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
-      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
-      <div class="clearfix visible-md-block visible-sm-block"></div>
-
-      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
-      <app-interface-thumbnail [it]="test"></app-interface-thumbnail>
-      <div class="clearfix visible-md-block visible-sm-block"></div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe">
-        <img src="https://firebasestorage.googleapis.com/v0/b/attene-cf230.appspot.com/o/screenshot%2Fthumbnail%2Fhello3.png?alt=media&token=f0146525-870d-4c0f-9083-9dd6f7cb9cf0" class="image-item center-block">
-        <h3 class="text-center"> Rocket League </h3>
-        <h4 class="text-center"> In-Game </h4>
-      </div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe">
-        <img src="http://fakeimg.pl/1024x768/" class="image-item center-block">
-        <h3 class="text-center"> Rocket League </h3>
-        <h4 class="text-center"> In-Game </h4>
-      </div>
-
-      <div class="clearfix visible-md-block visible-sm-block"></div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display:block !important;">
-        <img src="http://www.nim.ru/i/384_216/publications/32010/reliz-red-dead-redemption-2-otlozhen-do-vesni-1551-32010.jpg" class="image-item center-block">
-        <h3 class="text-center"> The Legend of Zelda: Twilight Princess </h3>
-        <h4 class="text-center"> Crafting </h4>
-      </div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display: block !important;">
-        <img src="https://somewhereinthemidstofnowhere.files.wordpress.com/2016/01/dinosaur1.jpg?w=384&h=216" class="image-item center-block">
-        <h3 class="text-center"> Rocket League </h3>
-        <h4 class="text-center"> In-Game </h4>
-      </div>
-      <div class="clearfix visible-md-block visible-sm-block"></div>
-    </div>
-    <hr>
-  </div>
-
-  <div class="home-section">
-    <h5> Weekly top </h5>
-    <div class="row gallery_section">
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display:block !important;">
-        <img src="http://fakeimg.pl/384x216/" class="img-responsive ">
-        <h3 class="text-center"> The Legend of Zelda: Twilight Princess </h3>
-        <h4 class="text-center"> Crafting </h4>
-      </div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display: block !important;">
-        <img src="http://fakeimg.pl/384x216/" class="img-responsive ">
-        <h3 class="text-center"> Rocket League </h3>
-        <h4 class="text-center"> In-Game </h4>
-      </div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display: block !important;">
-        <img src="http://fakeimg.pl/384x216/" class="img-responsive ">
-        <h3 class="text-center"> Red Dead Redemption 2 </h3>
-        <h4 class="text-center"> Inventory </h4>
-      </div>
-
-      <div class="gallery_product col-lg-3 col-md-6 col-sm-6 col-xs-12 filter hdpe" style="display: block !important;">
-        <img src="http://fakeimg.pl/384x216/" class="img-responsive ">
-        <h3 class="text-center"> Everyday is Wonderful! Hello Kitty Life Kit </h3>
-        <h4 class="text-center"> Main Menu </h4>
-      </div>
-    </div>
-    <hr>
-  </div>
-</div>

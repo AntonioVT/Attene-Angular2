@@ -27,7 +27,7 @@ export class UploadGameItemComponent implements OnInit {
 
   getImageSource(){
     if(this.ugi.imageId)
-    return "http://images.igdb.com/igdb/image/upload/t_thumb/" + this.ugi.imageId + ".png";
+    return "https://images.igdb.com/igdb/image/upload/t_cover_small/" + this.ugi.imageId + ".jpg";
 
     return '';
   }

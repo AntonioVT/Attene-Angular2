@@ -107,7 +107,8 @@ export class UploadPublisherComponent implements OnInit {
 
         // get all games
         var data = snapshot.json();
-        data.forEach(function (element) {
+        for(var i = 0; i < data.length; i++){
+          var element = data[i];
           var ugi = new UploadGameItem();
           ugi.id = element.id;
           ugi.name = element.name;
@@ -122,7 +123,12 @@ export class UploadPublisherComponent implements OnInit {
           else
             ugi.first_release_date = year.toString();
           vm.uploadGameItems.push(ugi);
-        });
+
+          if(element.name.toLowerCase() === vm.uGameName.toLowerCase()){
+            console.log('xd');
+            break;
+          }
+        }
       });
     }
   }
@@ -207,8 +213,6 @@ export class UploadPublisherComponent implements OnInit {
       var fileB = vm.dataURLtoFile(vm.fileResult1024, 'hello2.png');
       var fileC = vm.dataURLtoFile(vm.fileResult336, 'hello3.png');
 
-
-
       vm.strg.uploadScreenshot(fileA, 'hello.png').then(function () {
         vm.strg.getScreenshotUrl('hello.png').then(function (data) {
           console.log(data);
@@ -276,14 +280,6 @@ export class UploadPublisherComponent implements OnInit {
   }
 
   dataURLtoFile(dataURI, filename) {
-    console.log('arr and mime');
-    /*
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });*/
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
       byteString = atob(dataURI.split(',')[1]);

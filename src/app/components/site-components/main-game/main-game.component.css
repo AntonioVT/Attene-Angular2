@@ -1,67 +1,39 @@
-.js--image-preview {
-    z-index: -1000;
-    
-    width: 100%;
-    height: 0;
-    padding-bottom: 30%;
-    position: absolute;
-    overflow: hidden;
-
-    background-color: #2196f3;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image:  linear-gradient(transparent 0%, transparent 65%, rgba(0,0,0,0.25) 100%), url("https://images.igdb.com/igdb/image/upload/t_screenshot_big/x2ebxdsn5kfjcnjbo7q2.jpg");
-
-
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-
-    top: 0;
-    left: 0;
-    transform: scale(1.1);
+.top-panel{
+    background-color: #1e88e5;
+    padding-top: 12px;
+    padding-bottom: 24px;
 }
 
-.cover{
-    overflow-x: hidden;
-    overflow-y: hidden;
+.row, h4{
+    color: #eeeeee;
 }
 
-.card {
-    background-color: #ffffff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+p{
+    color: #ffffff;
+    margin-bottom: 0px; 
 }
 
-.fb-profile img.fb-image-lg{
-    z-index: 0;
-    width: 100%;  
+h2{
+    color: #ffffff;
 }
 
-.fb-image-profile
-{
-    z-index: 9;
-    width: 20%; 
+.website-link {
+    color: #eeeeee;
+    text-decoration: underline;
+}
+.website-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
-@media (max-width:768px)
-{
-    .fb-profile-text>h1{
-        font-weight: 700;
-        font-size:16px;
-    }
+.nav-tabs-game{
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
 
-    .fb-image-profile
-    {
-        z-index: 9;
-        width: 20%; 
-    }
+.nav-tabs-game > li{
+    display: inline-block;
+    float:none;
 }

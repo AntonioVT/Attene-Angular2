@@ -7,7 +7,7 @@ import { InterfaceThumbnail } from "app/classes/interface-thumbnail";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css', '../_shared/interface-thumbnail-section/interface-thumbnail-section.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
                                                             '/interface/0',
                                                             'Zelda',
                                                             'Interface', true);
+  public sectionFeatured: InterfaceThumbnail[] = [this.test, this.test, this.test, this.test, this.test, this.test, this.test];
 
 
   ngOnInit() {
