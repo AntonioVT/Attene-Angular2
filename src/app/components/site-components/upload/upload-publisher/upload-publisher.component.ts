@@ -4,6 +4,7 @@ import { IgdbService } from "app/services/external-services/igdb/igdb.service";
 import { UploadGameItem } from "app/classes/upload-game-item";
 import { StorageService } from "app/services/external-services/firebase/storage.service";
 import { escape, unescape } from "querystring";
+import { AdbService } from "app/services/external-services/adb/adb.service";
 
 @Component({
   selector: 'app-upload-publisher',
@@ -14,21 +15,29 @@ export class UploadPublisherComponent implements OnInit {
 
   @ViewChild('uploadGameItemsList') private uploadGameItemsContainer: ElementRef;
 
+  // Form Data
   screenshotData: Screenshot = new Screenshot();
   uploadGameItems: Array<UploadGameItem> = [];
+  gameName: string;
+
+  // Display
   showGameItems: boolean = false;
+  isSearchingGame: boolean = false;
   file: File;
 
   lTagToAdd: String;
 
-  tags: Array<String> = [];
-
+  categories: Array<any> = [];
   // byte data
   fileResult: any;
   fileResult1024: any;
   fileResult336: any;
 
-  constructor(public igdb: IgdbService, public strg: StorageService) { }
+  // Form Data
+
+  constructor(public igdb: IgdbService, public strg: StorageService, public adb: AdbService) {
+    this.loadCategories();
+  }
   timer: any;
   uGameName: string = '';
 
@@ -38,8 +47,21 @@ export class UploadPublisherComponent implements OnInit {
   ngOnInit() {
   }
 
+  loadCategories() {
+    let vm = this;
+    this.adb.getCategories().then(function (data) {
+      vm.categories = data.json().sort(function (a, b) {
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+      });;
+    });
+  }
+
   getTagPlaceholder() {
-    if (this.tags.length == 0)
+    if (this.screenshotData.ssTags && this.screenshotData.ssTags.length == 0)
       return '(e.g., player, death, landscape)';
     return '';
   }
@@ -65,18 +87,18 @@ export class UploadPublisherComponent implements OnInit {
       var actualTag = vm.lTagToAdd;
       actualTag = actualTag.replace(/,/g, "").trim();
 
-      if (actualTag && vm.tags.indexOf(actualTag) == -1) {
-        vm.tags.push(actualTag);
+      if (actualTag && vm.screenshotData.ssTags.indexOf(actualTag) == -1) {
+        vm.screenshotData.ssTags.push(actualTag);
         vm.lTagToAdd = '';
       }
     }
     else if (key == 8 && !vm.lTagToAdd) {
       if (!vm.lTagToAdd && vm.selectedTagIndex != -1) {
-        vm.tags.pop();
-        vm.selectedTagIndex = vm.tags.length - 1;
+        vm.screenshotData.ssTags.pop();
+        vm.selectedTagIndex = vm.screenshotData.ssTags.length - 1;
       }
       else {
-        vm.selectedTagIndex = vm.tags.length - 1;
+        vm.selectedTagIndex = vm.screenshotData.ssTags.length - 1;
       }
     } else {
       vm.selectedTagIndex = -1;
@@ -84,7 +106,7 @@ export class UploadPublisherComponent implements OnInit {
   }
 
   removeTag(index) {
-    this.tags.splice(index, 1);
+    this.screenshotData.ssTags.splice(index, 1);
   }
 
   callTimer() {
@@ -94,6 +116,7 @@ export class UploadPublisherComponent implements OnInit {
     }
     else {
       this.timer = setTimeout(this.requestGames, 400, this)
+      this.isSearchingGame = true;
     }
   }
 
@@ -107,7 +130,8 @@ export class UploadPublisherComponent implements OnInit {
 
         // get all games
         var data = snapshot.json();
-        for(var i = 0; i < data.length; i++){
+        var arr = [];
+        for (var i = 0; i < data.length; i++) {
           var element = data[i];
           var ugi = new UploadGameItem();
           ugi.id = element.id;
@@ -122,13 +146,22 @@ export class UploadPublisherComponent implements OnInit {
             ugi.first_release_date = "N/A";
           else
             ugi.first_release_date = year.toString();
-          vm.uploadGameItems.push(ugi);
+          arr.push(ugi);
 
-          if(element.name.toLowerCase() === vm.uGameName.toLowerCase()){
-            console.log('xd');
+          if (element.name.toLowerCase() === vm.uGameName.toLowerCase()) {
             break;
           }
         }
+
+        arr.sort(function (a: any, b: any) {
+          var ai = a.name.indexOf(vm.uGameName.toLowerCase());
+          var bi = b.name.indexOf(vm.uGameName.toLowerCase());
+          if (ai >= 0 && bi < 0) return -1;
+          else if (bi >= 0 && ai < 0) return 1;
+          else return a.name - b.name;
+        });
+
+        vm.uploadGameItems = arr;
       });
     }
   }
@@ -148,18 +181,19 @@ export class UploadPublisherComponent implements OnInit {
   resetGameItems() {
     this.uploadGameItemsContainer.nativeElement.scrollTop = 0;
     this.uploadGameItems = [];
+    this.isSearchingGame = false;
   }
 
   selectPublishedGame(gameId: number, gameName: string) {
     this.screenshotData.gameId = gameId;
-    this.screenshotData.gameName = gameName;
+    this.gameName = gameName;
     this.uGameName = '';
     this.resetGameItems();
   }
 
   deselectGame() {
     this.screenshotData.gameId = null;
-    this.screenshotData.gameName = '';
+    this.gameName = '';
   }
 
   // file methods
@@ -213,70 +247,62 @@ export class UploadPublisherComponent implements OnInit {
       var fileB = vm.dataURLtoFile(vm.fileResult1024, 'hello2.png');
       var fileC = vm.dataURLtoFile(vm.fileResult336, 'hello3.png');
 
-      vm.strg.uploadScreenshot(fileA, 'hello.png').then(function () {
-        vm.strg.getScreenshotUrl('hello.png').then(function (data) {
-          console.log(data);
-        });
-      });
+      var promiseArray = [];
+      promiseArray.push(vm.strg.uploadScreenshot(fileA, 'hello.png'));
+      promiseArray.push(vm.strg.uploadScreenshot(fileB, 'hello2.png'));
+      promiseArray.push(vm.strg.uploadScreenshot(fileC, 'hello3.png'));
 
-      vm.strg.uploadScreenshot(fileB, 'hello2.png').then(function () {
-        vm.strg.getScreenshotUrl('hello2.png').then(function (data) {
-          console.log(data);
-        });
-      });
 
-      vm.strg.uploadScreenshot(fileC, 'hello3.png').then(function () {
-        vm.strg.getScreenshotUrl('hello3.png').then(function (data) {
-          console.log(data);
+      Promise.all(promiseArray).then(results => {
+
+        var promiseArray2 = [];
+        promiseArray2.push(vm.strg.getScreenshotUrl('hello.png'));
+        promiseArray2.push(vm.strg.getScreenshotUrl('hello2.png'));
+        promiseArray2.push(vm.strg.getScreenshotUrl('hello3.png'));
+
+        Promise.all(promiseArray2).then(results => {
+          vm.screenshotData.ssOriginalURL = results[0];
+          vm.screenshotData.ssMediumURL = results[1];
+          vm.screenshotData.ssThumbnailURL = results[2];
+          vm.uploadInterface(vm.screenshotData);
         });
+
       });
 
     }
-    else {
-      console.log('wait');
-    }
+  }
+
+  uploadInterface(ss: Screenshot){
+    console.log(ss);
   }
 
   uploadScreenshot() {
     let vm = this;
-    if (vm.fileResult) {
-      console.log('Original image loaded');
 
-      var img1024 = new Image();
-      img1024.src = vm.fileResult;
-      img1024.onload = function () {
-        var res = vm.convertImage(1024, img1024);
-        vm.fileResult1024 = res;
-        vm.imagesReady();
+    if (vm.screenshotData.gameId && vm.screenshotData.categoryId != -1) {
+      if (vm.fileResult) {
+        console.log('Original image loaded');
+
+        var img1024 = new Image();
+        img1024.src = vm.fileResult;
+        img1024.onload = function () {
+          var res = vm.convertImage(1024, img1024);
+          vm.fileResult1024 = res;
+          vm.imagesReady();
+        }
+
+        var img336 = new Image();
+        img336.src = vm.fileResult;
+        img336.onload = function () {
+          var res = vm.convertImage(336, img336);
+          vm.fileResult336 = res;
+          vm.imagesReady();
+        }
+
+      } else {
+        console.log('Missing image');
       }
-
-      var img336 = new Image();
-      img336.src = vm.fileResult;
-      img336.onload = function () {
-        var res = vm.convertImage(336, img336);
-        vm.fileResult336 = res;
-        vm.imagesReady();
-      }
-
-    } else {
-      console.log('Missing image');
     }
-
-    /*
-    let vm = this;
-    var fileX = vm.dataURLtoFile(vm.fileResult, 'hello.png');
-
-    vm.strg.uploadScreenshot(fileX, '1').then(function () {
-      vm.strg.getScreenshotUrl().then(function (data) {
-        console.log(data);
-      });
-    })
-
-    vm.strg.uploadScreenshot(vm.file, '2').then(function () {
-      vm.strg.getScreenshotUrl().then(function (data) {
-        console.log(data);
-      });
-    })*/
   }
 
   dataURLtoFile(dataURI, filename) {

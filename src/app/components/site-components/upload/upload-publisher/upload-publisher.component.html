@@ -24,17 +24,38 @@
             <div class="col-md-6" style="margin-top: 12px;">
               <!-- Game Title -->
               <div class="form-group">
-                <label class="control-label">Game Title</label>
-                <div *ngIf="!screenshotData.gameName; else elseSelectedGame">
-                  <input [(ngModel)]="uGameName" name="uGameName" class="form-control" id="focusedInput" type="text" placeholder="Search" (keyup)="callTimer()"
-                    (blur)="clearGameName()" (focus)="focusGameName()">
-                  <div *ngIf="showGameItems;" class="userlist" #uploadGameItemsList>
-                    <app-upload-game-item *ngFor="let ugi of uploadGameItems;" [ugi]="ugi" (click)="selectPublishedGame(ugi.id, ugi.name)"> </app-upload-game-item>
+                <label class="control-label">Game</label>
+                <div *ngIf="!gameName; else elseSelectedGame">
+                  <div class="input-group">
+                    <input [(ngModel)]="uGameName" name="uGameName" class="form-control" id="focusedInput" type="text" placeholder="Search" (keyup)="callTimer()"
+                      (blur)="clearGameName()" (focus)="focusGameName()">
+                    <div *ngIf="showGameItems;" class="userlist" #uploadGameItemsList>
+                      <app-upload-game-item *ngFor="let ugi of uploadGameItems;" [ugi]="ugi" (click)="selectPublishedGame(ugi.id, ugi.name)"> </app-upload-game-item>
+                    </div>
+                    <span class="input-group-btn">
+                        <div class="sk-circle">
+                          <div *ngIf="isSearchingGame">
+                            <div class="sk-circle1 sk-child"></div>
+                            <div class="sk-circle2 sk-child"></div>
+                            <div class="sk-circle3 sk-child"></div>
+                            <div class="sk-circle4 sk-child"></div>
+                            <div class="sk-circle5 sk-child"></div>
+                            <div class="sk-circle6 sk-child"></div>
+                            <div class="sk-circle7 sk-child"></div>
+                            <div class="sk-circle8 sk-child"></div>
+                            <div class="sk-circle9 sk-child"></div>
+                            <div class="sk-circle10 sk-child"></div>
+                            <div class="sk-circle11 sk-child"></div>
+                            <div class="sk-circle12 sk-child"></div>
+                          </div>
+                        </div>
+                    </span>
                   </div>
+
                 </div>
                 <ng-template #elseSelectedGame>
                   <div class="input-group">
-                    <input class="form-control" id="focusedInput" type="text" value="{{screenshotData.gameName}}" disabled>
+                    <input class="form-control" id="focusedInput" type="text" value="{{gameName}}" disabled>
                     <span class="input-group-btn">
                       <button class="btn btn-back" type="button" (click)="deselectGame()">
                         <i class="material-icons" style="font-size: 8x; line-height: 22px; color:#212121;">cancel</i>
@@ -46,25 +67,21 @@
               <!-- Category -->
               <div class="form-group">
                 <label class="control-label">Category: </label>
-                <select class="form-control">
-                    <option value="-1" selected="true" disabled="disabled" style="all: unset; display: none;"> Select category</option>
-                    <option value="0">Crafting</option>
-                    <option value="0">In-Game</option>
-                    <option value="0">Inventory</option>
-                    <option value="0">Level Selection</option>
-                    <option value="0">Main Menu</option>
+                <select name="xd" class="form-control" [(ngModel)]="screenshotData.categoryId">
+                    <option value="-1" selected="true" disabled="disabled" style="all: unset; display: none;"> Select category </option>
+                    <option *ngFor="let c of categories;" value="{{c.id}}"> {{c.name}} </option>
                  </select>
               </div>
               <!-- Description -->
               <div class="form-group">
                 <label class="control-label">Description</label>
-                <textarea class="form-control" rows="2" id="textArea" style="resize: none;" placeholder="Brief description of the interface"></textarea>
+                <textarea [(ngModel)]="screenshotData.ssDescription" class="form-control" rows="2" id="textArea" style="resize: none;" placeholder="Brief description about the interface"></textarea>
               </div>
               <!-- Tags -->
               <div class="form-group">
                 <label class="control-label">Tags</label>
                 <div [ngClass]="getTagActive()">
-                  <div *ngFor="let tag of tags; let i = index" style="all: unset; display: inline-block;">
+                  <div *ngFor="let tag of screenshotData.ssTags; let i = index" style="all: unset; display: inline-block;">
                     <div [ngClass]="(i==selectedTagIndex)?'chiptag-selected':'chiptag'"> {{tag}} <span class="chipCloseBtn" (click)="removeTag(i)"> &times; </span> </div>
                   </div>
                   <input class="form-control tag-input" [(ngModel)]="lTagToAdd" name="lTagToAdd" id="focusedInput" type="text" (blur)="setTagActive(false)"

@@ -25,6 +25,7 @@
     margin-top: 0px;
 }
 
+
 @media (max-width: 1199px){
     .text-center-horizontal{
         margin-top: 12px;
@@ -32,7 +33,15 @@
     }
 }
 
-@media (max-width: 1860px) {
+/* style="width: auto; max-width: 100%; height: auto; max-height: 320px;"*/
+.image-item-vertical{
+    width: auto; 
+    max-width: 100%; 
+    height: auto; 
+    max-height: 320px;
+}
+
+@media (min-width: 1551px) {
     .image-item-vertical{
         width: 288px; 
         height: 162px;

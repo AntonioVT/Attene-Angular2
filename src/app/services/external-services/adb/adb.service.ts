@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import { Screenshot } from "app/classes/screenshot";
 
 @Injectable()
 export class AdbService {
@@ -29,13 +30,26 @@ export class AdbService {
     return this.http.post(url, newUserData, {headers: vm.headers}).toPromise();
   }
 
-  // Screenshyot Controller
+  // Screenshot Controller
   // HTTP GET
   getScreenshot() {
     let vm = this;
-    var url = this.mainUrl + 'screenshots'
-    var x = this.http.get(url, { headers: vm.headers }).toPromise();
-    return x;
+    var url = this.mainUrl + 'screenshots';
+    return this.http.get(url, { headers: vm.headers }).toPromise();
   }
+
+  setScreenshot(ss: Screenshot){
+    let vm = this;
+    var url = vm.mainUrl + 'screenshots';
+    return this.http.post(url, ss, {headers: vm.headers}).toPromise();
+  }
+
+  // Categories Controller
+  getCategories(){
+    let vm = this;
+    var url = this.mainUrl + 'categories';
+    return this.http.get(url, { headers: vm.headers }).toPromise();
+  }
+  
 
 }
