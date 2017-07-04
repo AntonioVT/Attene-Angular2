@@ -47,19 +47,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getUsernameMail() {
-    var vm = this;
-
-    this.databaseService.retrieveData('users/' + this.lUsername.toLocaleLowerCase()).then(function(snapshot){
-      if(snapshot.val() != null){
-        vm.login(snapshot.val(), vm.lPassword);
-      }
-      else{
-        console.log('does not exist')
-      }
-    });
-  }
-
   login(email: string, password: string){
     var vm = this;
     this.authService.loginWithMail(email, password).then((data) => {

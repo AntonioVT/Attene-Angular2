@@ -1,22 +1,18 @@
 <div class="container-fluid top-panel">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h2> Rocket League </h2>
+      <h2> {{title}} </h2>
       <div class="row">
         <div class="col-md-7 col-sm-6">
           <h4> Summary </h4>
-          <p style="text-align: justify"> Soccer meets racing once again in our long-awaited, MP-focused sequel to Supersonic Acrobatic Rocket-Powered Battle-Cars!
-            A futuristic Sports-Action game, Rocket League, equips players with booster-rigged vehicles that can be crashed
-            into balls for incredible goals or epic saves across multiple, highly-detailed arenas. Using an advanced physics
-            system to simulate realistic interactions, Rocket League relies on mass and momentum to give players a complete
-            sense of intuitive control in this unbelievable, high-octane re-imagining of association football.
+          <p style="text-align: justify"> {{summary}}
           </p>
         </div>
         <div class="col-md-5 col-sm-6">
           <h4> About </h4>
-          <p> Release date: 7th Jul, 2015</p>
-          <p> Developed by Psyonix </p>
-          <a class="website-link" target="_blank" href="https://www.igdb.com/games/rocket-league"> IGDB Website </a>
+          <p> {{releaseDate}} </p>
+          <p> {{developer}} </p>
+          <a class="website-link" target="_blank" [href]="website"> <strong> {{websiteTitle}} </strong> </a>
         </div>
       </div>
     </div>
@@ -34,7 +30,5 @@
         <a class="btn btn-primary btn-lg btn-block">LOAD MORE</a>
       </div>
     </div>
-
   </div>
-
 </app-interface-thumbnail-section>

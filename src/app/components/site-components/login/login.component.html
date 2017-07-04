@@ -14,7 +14,7 @@
           <input type="password" [(ngModel)]="lPassword" name="lPassword" class="form-control" placeholder="Password" required>
           <span class="help-inline"></span>
           <p><a routerLink="/passwordrecovery" class="forgot-password">Forgot password?</a></p>
-          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="getUsernameMail()">SIGN IN</button>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="login(lUsername, lPassword)">SIGN IN</button>
           <p>New to Attene? <a routerLink="/register" class="forgot-password">Sign up</a></p>
           <span class="help-inline" hidden> <p class="text-center"> Invalid credentials, please try again.</p></span>
         </form>

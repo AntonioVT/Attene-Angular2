@@ -22,7 +22,7 @@
         <ng-template [ngIf]="loadedUser">
         <ul class="nav navbar-nav navbar-right" style="padding: 0px 16px">
           <li><a class="navbar-brand navbar-item" routerLink="/upload"><i class="material-icons">file_upload</i></a></li>
-          <li *ngIf="loggedIn;" style="height: 64px;"><a class="navbar-user navbar-item"><p>TVBlink</p></a></li>
+          <li *ngIf="loggedIn;" style="height: 64px;"><a class="navbar-user navbar-item"><p>{{sCurrentUsername}}</p></a></li>
           <li *ngIf="loggedIn;" style="margin-left: 15px;"><a class="navbar-brand navbar-item" (click)="logout()"><i class="material-icons">exit_to_app</i></a></li>
           <li *ngIf="!loggedIn;">
             <div class="navbar-form navbar-login-option">
