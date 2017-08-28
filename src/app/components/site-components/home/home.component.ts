@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn: boolean;
   public test: InterfaceThumbnail = new InterfaceThumbnail('https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg',
-    '/interface/0',
+    '/interface/1',
     'Zelda',
     'Interface', true);
   public test2: InterfaceThumbnail = new InterfaceThumbnail('https://ksr-ugc.imgix.net/assets/017/023/353/ce90b2402ed1f7c35374b65c185c473d_original.png?w=680&fit=max&v=1496959451&auto=format&lossless=true&s=237164ab2adb94f6535e6dcd59cbd70c',
-    '/interface/0',
+    '/interface/2',
     'Zelda',
     'Interface', true);
   public sectionFeatured: InterfaceThumbnail[] = [this.test, this.test2, this.test, this.test, this.test, this.test, this.test];
@@ -49,12 +49,12 @@ export class HomeComponent implements OnInit {
   }
 
   getSs() {
-    this.adbService.getScreenshot().then(function (data) {
+    /*this.adbService.getScreenshot().then(function (data) {
       var val = data.text();
       console.log(JSON.parse(val));
     }).catch(function (error) {
       console.log(error);
-    });
+    });*/
   }
 
 

@@ -77,3 +77,37 @@
     color: #42a5f5;
     text-decoration: underline;
 }
+
+.interface-error, .interface-loading{
+    padding: 6px;
+    color: #e0e0e0;
+}
+
+.interface-error > hr{
+    margin: 11px 0px;
+}
+
+.interface-error > h4{
+    color: #fafafa;
+}
+
+.interface-loading > h3{
+    color: #424242;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 96px;
+    height: 96px;
+    margin: auto;
+    margin-top: 95px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

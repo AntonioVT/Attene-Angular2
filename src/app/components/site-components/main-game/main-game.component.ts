@@ -27,10 +27,10 @@ export class MainGameComponent implements OnInit {
   public websiteTitle: string;
 
   public test: InterfaceThumbnail = new InterfaceThumbnail('https://static.pressakey.de/gfxheader/320px/The-Legend-of-Zelda-Breath-of-the-Wild-Review-1703.jpg',
-    '/interface/0',
+    '/interface/1',
     'Zelda',
     'Interface', true);
-  public sectionFeatured: InterfaceThumbnail[] = [this.test, this.test, this.test, this.test, this.test, this.test, this.test];
+  public sectionFeatured: InterfaceThumbnail[] = [this.test, this.test, this.test, this.test, this.test, this.test, this.test, this.test];
 
   ngOnInit() {
     let vm = this;
@@ -48,11 +48,14 @@ export class MainGameComponent implements OnInit {
     let vm = this;
     this.adb.getGame(id).then(response => {
       var data = response.json();
-
+      console.log(data);
       if (data['name']) {
-        var date = data['release_date'];
+        var date = data['release_Date'];
         if(date == null){
           date = 'Release date: TBA';
+        }
+        else{
+          date = Utility.dateToFormat(date);
         }
         var developer = "Developed by " + data['developer'];
 

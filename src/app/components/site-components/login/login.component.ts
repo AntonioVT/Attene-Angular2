@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireModule  } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 import { AuthformComponent } from "app/components/site-components/_shared/authform/authform.component";
 import { AuthService } from "app/services/external-services/firebase/auth.service";
 import { DatabaseService } from "app/services/external-services/firebase/database.service";
 import { Router } from "@angular/router";
+import { AdbService } from "app/services/external-services/adb/adb.service";
 
 @Component({
   selector: 'app-login',
@@ -17,17 +18,17 @@ export class LoginComponent implements OnInit {
 
   lUsernameErrorMessage: any;
 
-  constructor(public authService: AuthService, public databaseService: DatabaseService, private router: Router ) { }
+  constructor(public authService: AuthService, public adbService: AdbService, private router: Router) { }
 
   ngOnInit() {
   }
 
   validateInput(name: string) {
 
-    if(this.lUsername){
+    if (this.lUsername) {
 
     }
-    else{
+    else {
       return;
     }
 
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
         if (!username.match(regex)) {
           // alert
           //console.log('bad');
-        }else{
+        } else {
           //console.log('good');
         }
         break;
@@ -47,13 +48,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(email: string, password: string){
+  login(email: string, password: string) {
     var vm = this;
-    this.authService.loginWithMail(email, password).then((data) => {
-      vm.router.navigate(['/']);
-    }).catch(function (error) {
-      console.log("to do -- show error");
+
+    vm.adbService.getAPIStatus().then(response => {
+      vm.authService.loginWithMail(email, password).then((data) => {
+        vm.router.navigate(['/']);
+      }).catch(function (error) {
+        console.log("to do -- show error");
+      });
+    }).catch(error => {
+      // Could not make a connection with ADB Service
     });
+
+
   }
 
 }

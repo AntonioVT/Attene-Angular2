@@ -10,9 +10,11 @@ import { UploadCommunityComponent } from "app/components/site-components/upload/
 import { UploadPublisherComponent } from "app/components/site-components/upload/upload-publisher/upload-publisher.component";
 import { MainInterfaceComponent } from "app/components/site-components/main-interface/main-interface.component";
 import { MainGameComponent } from "app/components/site-components/main-game/main-game.component";
+import { AddGameComponent } from "app/components/site-components/add-game/add-game.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'addGame', component: AddGameComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'passwordrecovery', component: ForgotpasswordComponent },

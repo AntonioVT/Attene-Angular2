@@ -35,6 +35,8 @@ import { MainInterfaceComponent } from './components/site-components/main-interf
 import { DropdownDirective } from './directives/dropdown.directive';
 import { MainGameComponent } from './components/site-components/main-game/main-game.component';
 import { InterfaceThumbnailSectionComponent } from './components/site-components/_shared/interface-thumbnail-section/interface-thumbnail-section.component';
+import { UploadBaseComponent } from './components/site-components/upload/upload-base/upload-base.component';
+import { AddGameComponent } from './components/site-components/add-game/add-game.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { InterfaceThumbnailSectionComponent } from './components/site-components
     MainInterfaceComponent,
     DropdownDirective,
     MainGameComponent,
-    InterfaceThumbnailSectionComponent
+    InterfaceThumbnailSectionComponent,
+    UploadBaseComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,

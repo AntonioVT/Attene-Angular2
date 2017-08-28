@@ -19,6 +19,15 @@ export class AdbService {
     this.currentUser = new Subject();
   }
 
+
+  // Status Controller
+  // HTTP GET
+  getAPIStatus() {
+    let vm = this;
+    var url = vm.mainUrl + 'status'
+    return this.http.get(url, { headers: vm.headers }).toPromise();
+  }
+
   // User Controller
   // HTTP GET
   getUserExistence(email: string, username: string) {
@@ -31,22 +40,17 @@ export class AdbService {
     console.log(data);
     let vm = this;
     if (data) {
-
       var url = vm.mainUrl + 'users/gubmak?email=' + data.email + '&skey=' + data.uid;
-
       var x = this.http.get(url, { headers: vm.headers }).toPromise();
       x.then(function (data) {
         console.log(data.json());
         vm._currentUser = data.json();
         vm.currentUser.next(vm._currentUser);
       });
-
-
     } else {
       vm._currentUser = null;
       vm.currentUser.next(null);
     }
-
   }
 
   // HTTP POST
@@ -58,9 +62,9 @@ export class AdbService {
 
   // Screenshot Controller
   // HTTP GET
-  getScreenshot() {
+  getScreenshot(id: number) {
     let vm = this;
-    var url = this.mainUrl + 'screenshots';
+    var url = this.mainUrl + 'screenshots/' + id;
     return this.http.get(url, { headers: vm.headers }).toPromise();
   }
 
@@ -78,9 +82,15 @@ export class AdbService {
   }
 
   // Game Controller
-  getGame(id: number){
+  getGame(id: number) {
     let vm = this;
-    var url = this.mainUrl + 'game/' + id ;
+    var url = this.mainUrl + 'game/' + id;
+    return this.http.get(url, { headers: vm.headers }).toPromise();
+  }
+
+  searchCommunityGame(gameName: string) {
+    let vm = this;
+    var url = this.mainUrl + 'game/?gameName=' + gameName;
     return this.http.get(url, { headers: vm.headers }).toPromise();
   }
 

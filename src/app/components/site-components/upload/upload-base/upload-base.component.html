@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center"> Post your screenshot here! </h3>
+  <h3 class="text-center"> {{uploadTitle}}</h3>
 
   <div class="row upload-container">
     <div class="col-md-12" style="padding: 0px">
@@ -29,6 +29,7 @@
                   <div class="input-group">
                     <input [(ngModel)]="uGameName" name="uGameName" class="form-control" id="focusedInput" type="text" placeholder="Search" (keyup)="callTimer()"
                       (blur)="clearGameName()" (focus)="focusGameName()">
+
                     <div *ngIf="showGameItems;" class="userlist" #uploadGameItemsList>
                       <app-upload-game-item *ngFor="let ugi of uploadGameItems;" [ugi]="ugi" (click)="selectPublishedGame(ugi.id, ugi.name)"> </app-upload-game-item>
                     </div>
@@ -51,8 +52,8 @@
                         </div>
                     </span>
                   </div>
-
                 </div>
+                <span *ngIf="uploadTitle == 'Published Games'"> Can't find your game? <a routerLink="/addGame"> Click here </a> to add it. </span>
                 <ng-template #elseSelectedGame>
                   <div class="input-group">
                     <input class="form-control" id="focusedInput" type="text" value="{{gameName}}" disabled>

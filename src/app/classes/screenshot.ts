@@ -4,6 +4,7 @@ export class Screenshot {
     public categoryId: number;
     public gameId: number;
     public gameName: string;
+    public gameType: string;
     public ssDescription: string;
     public ssTags: any[];
     public ssOriginalURL: string;
